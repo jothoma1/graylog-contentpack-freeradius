@@ -24,35 +24,48 @@ This content pack provides useful dashboard for auditing freeradius accounting :
 
 ## NXLog Example
 ```
-define ROOT C:\Program Files (x86)\nxlog
+########################################
+# Global directives                    #
+########################################
+User nxlog
+Group nxlog
 
-Moduledir %ROOT%\modules
-CacheDir %ROOT%\data
-Pidfile %ROOT%\data\nxlog.pid
-SpoolDir %ROOT%\data
-LogFile %ROOT%\data\nxlog.log
+LogFile /var/log/nxlog/nxlog.log
+LogLevel WARNING
 
+########################################
+# Modules                              #
+########################################
 <Extension gelf>
-    Module xm_gelf
+    Module      xm_gelf
 </Extension>
-<Input in>
-    # For windows vista/2008 and above use:
-    Module      im_msvistalog
 
-    # For windows 2003 and earlier use the following:
-    #   Module      im_mseventlog
+<Extension json>
+    Module      xm_json
+</Extension>
+
+<Input in1>
+    Module      im_file
+    File        '/var/log/radius/linelog-accounting'
+    SavePos TRUE
+    ReadFromLast TRUE
+    Exec        parse_json();
 </Input>
 
-<Output out> 
-    Module      om_udp
+<Output out1>
+    Module      om_tcp
     Host        graylog.server.com
-    Port        5414
-    OutputType  GELF
+    Port        12201
+    OutputType  GELF_TCP
 </Output>
 
+########################################
+# Routes                               #
+########################################
 <Route 1>
-    Path        in => out
+    Path        in1 => out1
 </Route>
+
 ```
 
 ## Screenshots
