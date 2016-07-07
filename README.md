@@ -23,7 +23,7 @@ This content pack provides useful dashboard for auditing freeradius accounting :
 * NXLog collecting freeradius logs, other log collectors will work but may require modifying the searches to match the different fields outputted by other collectors
 
 ## /etc/raddb/mods-enabled/linelog Example
-...
+```
 linelog log_accounting {
         filename = ${logdir}/linelog-accounting
         permissions = 0655
@@ -45,7 +45,7 @@ Interim-Update = "{\"RadacctStatusType\":\"Interim-Update\",\"RadacctNASIP\":\"%
                 unknown = "NAS %{Packet-Src-IP-Address} (%{NAS-IP-Address}) sent unknown Acct-Status-Type %{Acct-Status-Type}"
         }
 }
-...
+```
 
 
 ## NXLog Example
