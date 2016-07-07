@@ -13,8 +13,8 @@ This content pack provides useful dashboard for auditing freeradius accounting :
 ## Includes
 
 * Freeradius 3 linelog accounting configuration (in order to format log in JSON)
-* NXLog configuration
-* Stream (unconfigured)
+* NXLog configuration (change with your graylog server or LB)
+* Stream (dont forget to change MyRadiusServer with your host)
 * Dashboard
 
 ## Requirements
