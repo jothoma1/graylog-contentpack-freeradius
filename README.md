@@ -96,4 +96,5 @@ LogLevel WARNING
 
 ## Screenshots
 
-TODO
+![Screenshot](/screenshot.png?raw=true "Dashboard Screenshot")
+
